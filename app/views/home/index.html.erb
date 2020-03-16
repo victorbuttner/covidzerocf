@@ -1,3 +1,7 @@
+<style>
+
+</style>
+
 <div class="container">
     <div class="row ">
         <div class="col-6">
@@ -36,14 +40,65 @@
                         Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam
                         nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat 
                     </p>
+                   
                 </div>
             </div>
             
         </div>
     </div>
-    <div class="row">
-        <div class="col-4">
-            Projeto1
+    <%
+    colors = ["#31b8e9ff","#e9bf37ff","#30b7c6ff","#d32064ff"]
+    
+    %>
+    <div class="row mt-5">
+        <div class="card-group">
+            <% if @projects.any? %>
+                <% @projects.each_with_index do |project,index|  %>
+                    <div class="col-4">                
+                        <div class="card " style="background-color: <%=colors[index]%>">
+                            <span class="m-3">
+                                <img src="<%= project.photo.url %>" class="card-img-top" alt="logo">
+                            </span>
+                            
+                            <div class="card-body"  >
+                                <div class="row">
+                                    <span>
+                                        <%= image_tag 'plus.png', class: 'image-fluid' %>
+                                        <h3 class="card-title text-center"><%=project.name%></h3> 
+                                    </span>
+    
+                                </div>                                
+                                <div class="row">
+                                    <div class="col-8">
+                                        <p class="card-text"><%=project.about%> </p>
+                                    </div>
+                                    <div class="col-4">
+                                        <%= image_tag 'acao-logo.png' , class: 'img-fluid' %>
+                                    </div>
+                                </div>        
+                                <dl class="cc-inlineStats">
+                                    <div class="cc-inlineStats__group">
+                                      <dd class="cc-inlineStats__value"><%= number_to_currency(project.goal, :unit => "R$",precision: 0) %></dd>
+                                      <dt class="cc-inlineStats__label text-red-pacto">Meta</dt>
+                                    </div>
+                                    <div class="cc-inlineStats__group">
+                                      <dd class="cc-inlineStats__value">...</dd>
+                                      <dt class="cc-inlineStats__label text-red-pacto">Arrecadado</dt>
+                                    </div>
+                                    <div class="cc-inlineStats__group">
+                                      <dd class="cc-inlineStats__value">....</dd>
+                                      <dt class="cc-inlineStats__label text-red-pacto">Valor da quota</dt>
+                                    </div>
+                                  </dl> 
+
+                            </div>
+                        </div>
+                    </div>
+                <%end%>
+            <%end%>            
         </div>
+    </div>
+    <div class="row mt-5">
+        Bla
     </div>
 </div>

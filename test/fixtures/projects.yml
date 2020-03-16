@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  photo: MyString
+  goal: 9.99
+  quota_total: 1
+  quota_value: 9.99
+  slug: MyString
+  active: false
+
+two:
+  name: MyString
+  photo: MyString
+  goal: 9.99
+  quota_total: 1
+  quota_value: 9.99
+  slug: MyString
+  active: false
