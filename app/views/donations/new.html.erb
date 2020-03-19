@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row justify-content-end">
+        <%= render 'shared/navbar' %>   
+    </div>
+    <div class="row justify-content-center">
+        <%= image_tag 'nav-logo', class: 'img-fluid' %>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <h2><%=@project.name%></h2>
+    </div>
+    <%= render 'form', donation: @donation %>
+
+</div>

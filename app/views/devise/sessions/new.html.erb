@@ -1,0 +1,41 @@
+<div class="container">
+   <div class="row justify-content-end">
+      <%= render 'shared/navbar' %>
+      <%= image_tag 'nav-logo.png' %>
+   </div>  
+  <div class="row">
+    <div class="col-sm-6 col-md-6 col-lg-6 mx-auto">
+       <div class="card">
+          <div class="card-body">
+             <h3 class="card-title text-center">Login</h3>
+             <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+             <div class="field">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+             </div>
+             <div class="field">
+                <%= f.password_field :password, autocomplete: "off" %>
+             </div>
+             <div class="row">
+                <div class="col-sm-6">
+                   <% if devise_mapping.rememberable? -%>
+                   <%= f.check_box :remember_me, label: 'Lembrar de mim' %>
+                   <% end -%>
+                </div>
+                <div class="col-sm-6">
+                   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                   <p class="text-center"><%= link_to "Esqueci minha senha", new_password_path(resource_name) %></p>
+                   <% end -%>
+                </div>
+             </div>
+             <div class="actions col-md-8  mx-auto">
+                <%= f.submit "Entrar", class: 'btn btn-primary btn-block my-4' %>
+             </div>
+             <% end %>
+             <div class="card-footer">
+                <%= render "devise/shared/links" %>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+</div>

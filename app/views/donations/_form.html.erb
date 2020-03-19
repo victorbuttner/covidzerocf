@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+  <%= form_with(model: @donation, url: project_donations_path) do |form| %>
+    <% if @donation.errors.any? %>
+      <div id="">
+        <h2><%= pluralize(@donation.errors.count, "error") %> prohibited this donation from being saved:</h2>
+
+        <ul>
+          <% @donation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+     
+
+
+    <%= form.text_field :user_id %>
+    <%= form.text_field :project_id, hidden: true %>  
+    <div class="field">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">R$</span>
+        </div>
+        <%= form.number_field :value, min: 50, value: 50, class: 'text-right' %>
+        <div class="input-group-append">
+          <span class="input-group-text">,00</span>
+        </div>
+        <%= form.submit 'Doar' , class: 'btn btn-success ml-3' %>
+      </div>
+          
+    </div>
+    <div class="actions">
+      
+    </div>
+  <% end %>
+
+</div>
