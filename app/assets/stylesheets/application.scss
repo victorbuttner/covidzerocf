@@ -70,3 +70,23 @@ nav a:hover {
   color: black!important;
   border-bottom: 2px solid #f04d57;
 }
+
+.apoiadores {
+  
+  border: 1px solid gray;
+  height: 200px!important;
+  margin: 2px;
+}
+
+.apoiadores img {
+  width: 150px;
+  height: auto;
+}
+
+.text-covid {
+  text-align: justify;
+  color: #1E1E1E;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.8em;
+}

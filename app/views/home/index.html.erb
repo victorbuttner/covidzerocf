@@ -4,8 +4,8 @@
 <div class="">
     <section class="home pt-5">
         </br></br></br>
-        <h2 class="text-center">COMO AJUDAR?</h2></br>
-        <h4 class="text-center mt-3">VEJA OS PROJETOS ABAIXO PARA COLABORAR COM O MOVIMENTO </br> COVIDZERO​</h4></br></br></br></br>
+        <h2 class="text-center">COMO FAZER UMA DOAÇÃO?</h2></br>
+        <h4 class="text-center mt-3"> ENTENDA COMO VOCÊ PODE AJUDAR O MOVIMENTO</br> COVIDZERO​</h4></br></br></br></br>
         <h1 class="text-center mt-5"><%=icon('fas', 'angle-double-down', class: 'strong')%></h3>
     </section>
     <div class="row mt-5 mx-auto justify-content-center">
@@ -13,7 +13,7 @@
         <div class="card-group">
             <% if @projects.any? %>
                 <% @projects.each_with_index do |project,index|  %>
-                    <div class="col-4 ">                
+                    <div class="col-4 mx-auto">                
                         <div class="card " onclick="window.location='<%= new_project_donation_path(project) %>'">
                             <span class="m-3">
                                 <img src="<%= project.photo.url %>" class="card-img-top img-fluid" alt="logo">
@@ -28,7 +28,7 @@
                                 </div>                                
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <p class="card-text text-justify"><%= truncate  project.about , length: 160%> </p>
+                                        <p class="card-text text-justify "><%= truncate  project.about , length: 160%> </p>
                                     </div>
                                 </div>        
                                 <dl class="cc-inlineStats">
@@ -52,4 +52,60 @@
             <%end%>            
         </div>
     </div>
+    <section>
+        <div class="row justify-content-center pt-5">
+            <div class="col-6 mx-auto text-covid">
+
+                <h1 class="text-center pb-3">Entenda porque</br>nós existimos</h1>
+                <p class="text-covid">O CovidZero é um projeto OpenSource que nasceu com intuito de ajudar a sociedade frente aos acontecimentos do CoronaVirus (SARS-CoV-2).</p>
+                <p>Isso tudo porque nós acreditamos que a tecnologia pode ajudar e muito a evolução do atual cenário.</p>
+                <p>Nosso objetivo é disponibilizar uma plataforma onde fontes de dados (Hospitais, Planos de saúde, Clínicas, SUS, Governo, etc) possam se cadastrar, ter sua conta validada para garantir veracidade das informações para viabilizar o compartilhamento de dados.</p>
+                <p>Esses dados serão disponibilizados em tempo real a todos que possam se beneficiar, mediante a criação de uma conta e validação de titularidade, esses são:</p>
+                <ul>
+                    <li>Médicos</li>
+                    <li>Enfermeiros</li>
+                    <li>Cientistas</li>
+                    <li>Jornalistas</li>
+                    <li>Pesquisadores</li>
+                    <li>etc</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container justify-content-center pt-5" >
+            <div class="text-center">
+                <h2>APOIADORES</h2>
+                <p>Conheça as empresas e instituições que apoiam esse projeto</p>
+                <div class="row mx-auto justify-content-center">
+                    <div class="apoiadores col-sm-4 d-flex align-items-center justify-content-center">
+                        <%= image_tag 'amazon-aws-logo.png', class: 'img-fluid'%>
+                    </div>
+                    <div class="apoiadores col-sm-4 d-flex align-items-center justify-content-center ">
+                        <%= image_tag 'logog4new-min.png', class: 'img-fluid'%>
+                    </div>
+                    <div class="apoiadores col-sm-4 d-flex align-items-center justify-content-center ">
+                        <%= image_tag 'klivo-animated-logo.gif', class: 'img-fluid'%>
+                    </div>
+                    <div class="apoiadores col-sm-4 d-flex align-items-center justify-content-center">
+                        <%= image_tag 'logo-google.png', class: 'img-fluid'%>
+                    </div>
+                    <div class="apoiadores col-sm-4 d-flex align-items-center justify-content-center">
+                        <%= image_tag 'preme-pay-logo.png', class: 'img-fluid'%>
+                    </div>
+                    <div class="apoiadores col-sm-4 d-flex align-items-center justify-content-center">
+                        <%= image_tag 'logo-resultados-digitais.png', class: 'img-fluid'%>
+                    </div>
+                    <div class="apoiadores col-sm-4 d-flex align-items-center justify-content-center">
+                        <%= image_tag 'logo-mlabs.png', class: 'img-fluid'%>
+                    </div>
+                    <div class="apoiadores col-sm-4 d-flex align-items-center justify-content-center">
+                        <%= image_tag 'captable.png',  class: 'img-fluid'   %>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </section>
 </div>
