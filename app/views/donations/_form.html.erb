@@ -19,7 +19,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">R$</span>
         </div>
-        <%= form.number_field :value, min: 50, value: 50, class: 'text-right col-3' %>
+        <%= form.number_field :value, min: @project.quota_value.to_i, value:  @project.quota_value.to_i, class: 'text-right col-3' %>
         <div class="input-group-append">
           <span class="input-group-text">,00</span>
         </div>
