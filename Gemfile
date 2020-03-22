@@ -36,6 +36,8 @@ gem 'carrierwave', '~> 2.0'
 gem "administrate"
 gem 'administrate-field-carrierwave', '~> 0.5.0'
 gem "bootstrap_form", "~> 4.0"
+gem 'pagarme'
+gem 'font-awesome-sass', '~> 5.12.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

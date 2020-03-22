@@ -11,17 +11,15 @@
         </ul>
       </div>
     <% end %>
-     
-
-
-    <%= form.text_field :user_id %>
+    <%= form.text_field :payment_status , hidden: true%>     
+    <%= form.text_field :user_id , hidden: true%>
     <%= form.text_field :project_id, hidden: true %>  
     <div class="field">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">R$</span>
         </div>
-        <%= form.number_field :value, min: 50, value: 50, class: 'text-right' %>
+        <%= form.number_field :value, min: 50, value: 50, class: 'text-right col-3' %>
         <div class="input-group-append">
           <span class="input-group-text">,00</span>
         </div>

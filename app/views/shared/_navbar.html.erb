@@ -1,13 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark  ">
+    <%= image_tag 'covidzero-logo.png' %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="/">Crowdfunding <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="https://captable.com.br">Captable</a>
-        <a class="nav-item nav-link" href="#">Pacto Alegre</a>
-        <a class="nav-item nav-link" href="#" tabindex="-1" aria-disabled="true">Contato</a>
+    <div class="collapse navbar-collapse justify-content-end " id="navbarNavAltMarkup">
+      <div class="navbar-nav mx-auto">
+        <a class="nav-item nav-link active m-3" href="/">CROWDFUNDINNG<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link m-3" href="https://captable.com.br">CAPTABLE</a>
+        <a class="nav-item nav-link m-3" href="https://covidzero.com.br">COVIDZERO</a>
+        <% if user_signed_in? %>
+          <%= link_to('LOGOUT', destroy_user_session_path, method: :delete, class: 'nav-item nav-link m-3') %>        
+        <% else %>
+          <%= link_to('LOGIN', new_user_session_path, class: 'nav-item nav-link m-3') %>  
+        <% end %>
       </div>
     </div>
     <a class="navbar-brand" href="#"></a>

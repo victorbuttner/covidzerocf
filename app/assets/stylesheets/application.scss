@@ -1,5 +1,7 @@
 @import "bootstrap";
 @import "rails_bootstrap_forms";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 .cc-inlineStats {
     display: flex;
@@ -25,7 +27,7 @@
         font-weight: bold;
         margin: 0;
         padding: 0;
-        color:  #d32064ff;
+        color:  #f04d57;
       }
       .cc-inlineStats__value {
         font-size: 0.8em;
@@ -39,4 +41,32 @@
 
 .text-red-pacto {
     color: #d32064ff;
+}
+
+nav {
+  background:transparent!important;
+}
+nav a:hover {
+  color: #f04d57!important;
+  border-bottom: 2px solid #f04d57;
+  padding: 6px 0; 
+}
+
+.card-title  {
+  border-bottom: 2px solid #f04d57;
+}
+
+.home {
+  background-image: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url("covidzero-background");
+  color: white;
+  height: 600px;
+}
+
+.bg-black {
+  background: black;
+   
+}
+.projects-caption {
+  color: #black!important;
+  border-bottom: 2px solid #f04d57;
 }

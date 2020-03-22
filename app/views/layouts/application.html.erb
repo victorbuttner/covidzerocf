@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cfpacto</title>
+    <title>COVIDZERO</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://assets.pagar.me/checkout/1.1.0/checkout.js"></script>
+
   </head>
 
   <body>
+    <header>
+      <%= render 'shared/navbar' %>
+    </header>
     <%= yield %>
 
-    <footer class="mt-5">
+    <footer class="mt-5 fixed">
       <div class="row justify-content-center">
         <%= image_tag 'captable.png',  class: 'text-center' , style: 'max-width: 150px; height: auto'  %>
       </div>

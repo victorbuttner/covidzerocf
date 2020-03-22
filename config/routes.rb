@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
   
+  get 'donation_checkout/:id' , to: 'donation_checkout#show', as: 'donation_checkout'
+
   namespace :admin do
       resources :users
       resources :projects

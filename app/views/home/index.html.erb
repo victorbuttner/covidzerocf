@@ -1,100 +1,55 @@
 <style>
 
 </style>
-
-<div class="container">
-    <div class="row ">
-        <div class="col-6">
-            <%= image_tag 'home.png' , class: 'img-fluid' %>
-        </div>
-        <div class="col-6">
-            <div class="container">
-                <div class="row justify-content-end mt-5">
-                    <%= render 'shared/navbar' %>
-                    <%= image_tag 'nav-logo.png' , class: 'img-fluid' %>
-
-                </div>
-                <div class="row mt-5">
-                    <h3>Apresentação</h3>
-                    <p>
-                        Adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-                        dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                        quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip
-                        ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit
-                        in vulputate velit esse molestie consequat, vel illum dolore eu feugiat
-                        nulla facilisis at vero eros et accumsan et iusto odio dignissim qui
-                        blandit praesent luptatum zzril delenit augue duis dolore te feugait
-                        nulla facilisi.
-                        Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam
-                        nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat 
-                    </p>
-                   
-                </div>
-            </div>
-            
-        </div>
-    </div>
-    <%
-    colors = ["#31b8e9ff","#e9bf37ff","#30b7c6ff","#d32064ff"]
-    
-    %>
-    <div class="row mt-5">
+<div class="">
+    <section class="home pt-5">
+        </br></br></br>
+        <h2 class="text-center">COMO AJUDAR?</h2></br>
+        <h4 class="text-center mt-3">VEJA OS PROJEGOS ABAIXO PARA COLABORAR COM O MOVIMENTO </br> COVIDZERO​</h4></br></br></br></br>
+        <h1 class="text-center mt-5"><%=icon('fas', 'angle-double-down', class: 'strong')%></h3>
+    </section>
+    <div class="row mt-5 mx-auto justify-content-center">
+        <h2 class="text-center mb-5 projects-caption p-3">PROJETOS EM</br> CAPTAÇÃO</h2>
         <div class="card-group">
             <% if @projects.any? %>
                 <% @projects.each_with_index do |project,index|  %>
-                    <div class="col-4">                
-                        <div class="card " style="background-color: <%=colors[index]%>" onclick="window.location='<%= new_project_donation_path(project) %>'">
+                    <div class="col-4 ">                
+                        <div class="card " onclick="window.location='<%= new_project_donation_path(project) %>'">
                             <span class="m-3">
-                                <img src="<%= project.photo.url %>" class="card-img-top" alt="logo">
+                                <img src="<%= project.photo.url %>" class="card-img-top img-fluid" alt="logo">
                             </span>
                             
                             <div class="card-body"   >
                                 <div class="row">
                                     <div class="col">
-                                        <%= image_tag 'plus.png', class: 'image-fluid' %>
-                                         
-                                    </div>
-                                    <div class="col">
-                                        <h3 class="card-title text-center"><%=project.name%></h3>
+                                        <h3 class="card-title text-center pb-3"><%=project.name%></h3>
                                     </div>
     
                                 </div>                                
-                                <div class="row">
-                                    <div class="col-8">
-                                        <p class="card-text"><%=project.about%> </p>
-                                    </div>
-                                    <div class="col-4">
-                                        <%= image_tag 'acao-logo.png' , class: 'img-fluid' %>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <p class="card-text text-justify"><%= truncate  project.about , length: 160%> </p>
                                     </div>
                                 </div>        
                                 <dl class="cc-inlineStats">
                                     <div class="cc-inlineStats__group">
-                                      <dd class="cc-inlineStats__value"><%= number_to_currency(project.goal, :unit => "R$",precision: 0) %></dd>
-                                      <dt class="cc-inlineStats__label text-red-pacto">Meta</dt>
-                                    </div>
+                                        <dd class="cc-inlineStats__value"><%= number_to_currency(project.goal)%></dd>
+                                        <dt class="cc-inlineStats__label text-red-pacto">Meta</dt>
+                                      </div>
                                     <div class="cc-inlineStats__group">
-                                      <dd class="cc-inlineStats__value">...</dd>
+                                      <dd class="cc-inlineStats__value"><%= number_to_currency(project.donation_total)%></dd>
                                       <dt class="cc-inlineStats__label text-red-pacto">Arrecadado</dt>
                                     </div>
                                     <div class="cc-inlineStats__group">
-                                      <dd class="cc-inlineStats__value">....</dd>
-                                      <dt class="cc-inlineStats__label text-red-pacto">Valor da quota</dt>
+                                      <dd class="cc-inlineStats__value"><%= number_to_currency(project.quota_value)%> </dd>
+                                      <dt class="cc-inlineStats__label text-red-pacto">Doação mínima</dt>
                                     </div>
                                 </dl>
-                                <div class="row">
-                                    <%= link_to 'QUERO DOAR', new_project_donation_path(project), class:"btn btn-block cta cta-green my-4" %>
-                                </div> 
-                                <div class="row">
-                                    <p>Divulgue em suas redes sociais</p>
-                                </div>
                             </div>
                         </div>
                     </div>
                 <%end%>
             <%end%>            
         </div>
-    </div>
-    <div class="row mt-5">
-        Bla
     </div>
 </div>
