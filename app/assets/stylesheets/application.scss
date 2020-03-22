@@ -57,7 +57,7 @@ nav a:hover {
 }
 
 .home {
-  background-image: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url("covidzero-background");
+  background-image: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url("/covidzero-background.png");
   color: white;
   height: 600px;
 }
@@ -67,6 +67,6 @@ nav a:hover {
    
 }
 .projects-caption {
-  color: #black!important;
+  color: black!important;
   border-bottom: 2px solid #f04d57;
 }
