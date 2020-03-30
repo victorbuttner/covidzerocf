@@ -9,56 +9,84 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><h4 class="text-center">Valor da doação <%= number_to_currency(@donation.value)%> </h4></li>
                 </ul>
-                <button id="pay-button" class="botao-pagamento btn btn-success btn-block mt-3 ">Pagar </button>                
+                <form class="needs-validation" novalidate="" _lpchecked="1">
+                  <h4 class="mb-3">Pagamento</h4>
+                  <div class="d-block my-3">
+                    <div class="custom-control custom-radio">
+                      <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+                      <label class="custom-control-label" for="credit">Carão de crédito</label>
+                    </div>
+                    <!-- <div class="custom-control custom-radio">
+                      <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
+                      <label class="custom-control-label" for="boleto">Boleto</label>
+                    </div> -->
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="cc-name">Nome no cartão</label>
+                      <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+                      <small class="text-muted">Nome conforme descrito no cartão</small>
+                      <div class="invalid-feedback">
+                        Nome no cartão é obrigatório
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="cc-number">Número do cartão</label>
+                      <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+                      <div class="invalid-feedback">
+                        Credit card number is required
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="col-md-3 mb-3">
+                      <label for="cc-expiration">Expira em</label>
+                      <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+                      <div class="invalid-feedback">
+                        Data de expiração é obrigatório
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <label for="cc-cvv">CVV</label>
+                      <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+                      <div class="invalid-feedback">
+                        CVV obrigatório
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="mb-4">
+                  <button class="btn btn-primary btn-lg btn-block" type="submit">Fazer pagamento</button>
+                </form>
+                </div>
+                     
             </div>
                 
         </div>
+       
     </div>
 </div>
 <script>
-    var button = document.getElementById('pay-button');
-
-    // Abrir o modal ao clicar no botão
-    button.addEventListener('click', function() {
-        console.log("passou")
-
-      // inicia a instância do checkout
-      var checkout = new PagarMeCheckout.Checkout({
-        encryption_key: '123123123',
-        success: function(data) {
-          console.log(data);
-        },
-        error: function(err) {
-        	console.log(err);
-        },
-        close: function() {
-        	console.log('The modal has been closed.');
+    Iugu.setAccountID("5140DBA6B580485B8A9EE29CB825B88F");
+    Iugu.setTestMode(true);
+    Iugu.setup();
+    jQuery(function($) {
+      $('#payment-form').submit(function(evt) {
+        var form = $(this);
+        var tokenResponseHandler = function(data) {
+            
+            if (data.errors) {
+                alert("Erro salvando cartão: " + JSON.stringify(data.errors));
+            } else {
+                $("#token").val( data.id );
+                form.get(0).submit();
+            }
+            
+            // Seu código para continuar a submissão
+            // Ex: form.submit();
         }
-      });
-
-      // Obs.: é necessário passar os valores boolean como string
-      checkout.open({
-        amount: '<%=@donation.value%>00',
-        buttonText: 'Pagar',
-        buttonClass: 'botao-pagamento',
-        customerData: 'false',
-        createToken: 'true',
-        paymentMethods: 'credit_card',
-        customer: {
-          external_id: '#123456789',
-          name: 'Fulano',
-          type: 'individual',
-          country: 'br',
-          email: 'fulano@email.com',
-          documents: [
-            {
-              type: 'cpf',
-              number: '71404665560',
-            },
-          ],
-          phone_numbers: ['+5511999998888', '+5511888889999'],
-          birthday: '1985-01-01'
-        }
-      });
-    });
-    </script>
+      
+        Iugu.createPaymentToken(this, tokenResponseHandler);
+        return false;
+  });
+});
+</script>

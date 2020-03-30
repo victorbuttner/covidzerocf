@@ -1,13 +1,38 @@
-<div class="container">
-    <div class="row justify-content-center mt-5">
-        <%= image_tag @project.photo.url, class: 'img-fluid ', style: 'max-width: 500px;' %>
-    </div>    
-    <div class="row justify-content-center mt-5">        
-        <h2><%=@project.name%></h2>        
-    </div>
-    <div class="row justify-content-center m-5">
-        <p><%=@project.about%></p>        
-    </div>
-    <%= render 'form', donation: @donation %>
+<style>
+.card-project .card-logo {
+  width: 90px;
+  margin-top: -90px;
+  border: 1px solid #fff;
+}    
 
+</style>
+<div class="container-fluid">
+    <div class="row justify-content-center mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 card-group">
+                    <div class="card card-project">
+                        <a href="<%= project_path(@project) %>" style="text-decoration:none;">
+                        <div style="height:130px; width:100%; background-image:url(<%= @project.banner.url %>); background-size: cover; background-position: center;">
+                        &nbsp;
+                        </div>
+                        <div class="card-body">
+                            <img class="card-logo rounded-circle" style="border: 2px solid #C5C8CB;" src="<%= @project.photo.url %>">
+                            <h3 class="card-title text-center pb-3">PROJETO <%= @project.name %></h3>                            
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-8 card-group">
+                    <div class="card ">
+                        <div class="card-body align-middle">
+                            <h3>Quanto você vai doar?</h3>
+                            <p class="mb-5">Escolha abaixo o valor que você quer doar</p>
+                            <%= render 'form', donation: @donation %>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+
+        </div>
 </div>

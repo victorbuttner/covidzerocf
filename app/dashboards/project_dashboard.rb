@@ -11,11 +11,13 @@ class ProjectDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     photo: Field::Carrierwave,
+    banner: Field::Carrierwave,
     goal: Field::String.with_options(searchable: false),
     quota_total: Field::Number,
     quota_value: Field::String.with_options(searchable: false),
     slug: Field::String,
     active: Field::Boolean,
+    video_url: Field::String,
     about: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -39,6 +41,7 @@ class ProjectDashboard < Administrate::BaseDashboard
   id
   name
   photo
+  banner
   goal
   quota_total
   quota_value
@@ -55,10 +58,12 @@ class ProjectDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
   name
   photo
+  banner
   goal
   quota_total
   quota_value
   slug
+  video_url
   active
   about
   ].freeze
