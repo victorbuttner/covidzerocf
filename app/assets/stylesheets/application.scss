@@ -43,6 +43,9 @@
     color: #d32064ff;
 }
 
+.text-back-pacto {
+  color: black;
+}
 nav {
   background:transparent!important;
 }
@@ -207,3 +210,21 @@ nav a:hover {
   right: 0px;
 }
 
+/* .project-stats h1, .project-stats h6{
+        color:#FFF;
+      } */
+.project-stats-card {
+  opacity: 0.8;
+  background-color: #1E1E1E;
+}
+.project-stats-card * {
+  color: #fff !important;
+}
+
+.project-stats-card-inverse {
+  opacity: 0.8;
+  background-color: #fff;
+}
+.project-stats-card-inverse * {
+  color: #c9252c !important;
+}
