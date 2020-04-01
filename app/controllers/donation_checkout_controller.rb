@@ -6,4 +6,8 @@ class DonationCheckoutController < ApplicationController
     @project = @donation.project
   end
 
+  def create
+    
+  end
+
 end

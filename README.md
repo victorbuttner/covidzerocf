@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este app foi feito com o intuito de captar doações para o projeto CovidZero. 
 
-Things you may want to cover:
 
-* Ruby version
+# Stack utilizada 
+ * Ruby 2.5.1
+ * Rails versão 6 
+ * Banco de dados Postgres
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Como rodar o app
+- `bundle install`
+- `yarn install`
+- `rake db:create`
+- `rake db:migrate`
+- Cadastrar no admin um projeto 
