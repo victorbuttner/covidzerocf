@@ -11,7 +11,7 @@
             <div class="card-group">
                 <% if @projects.any? %>
                     <% @projects.each_with_index do |project,index|  %>
-                        <div class="col-4 mx-auto">                
+                        <div class="col-4 card-group mx-auto">                
                             <div class="card " onclick="window.location='<%= project_path(project) %>'">
                                 <span class="m-3">
                                     <img src="<%= project.photo.url %>" class="card-img-top img-fluid" alt="logo">
@@ -25,8 +25,11 @@
                                     </div>                                
                                     <div class="row mb-3">
                                         <div class="col">
-                                            <p class="card-text text-justify "><%= truncate  project.about , length: 160%> </p>
+                                            <p class="card-text text-justify "><%= truncate  project.about , length: 60%> </p>
                                         </div>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%=project.donation_percentage%>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%=project.donation_percentage%>%</div>
                                     </div>        
                                     <dl class="cc-inlineStats">
                                         <div class="cc-inlineStats__group">
@@ -42,6 +45,7 @@
                                           <dt class="cc-inlineStats__label text-red-pacto">Doação mínima</dt>
                                         </div>
                                     </dl>
+                   
                                 </div>
                             </div>
                         </div>
