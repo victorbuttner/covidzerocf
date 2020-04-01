@@ -10,6 +10,10 @@ class ProjectDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     name: Field::String,
+    tip1: Field::String,
+    tip2: Field::String,
+    tip3: Field::String,
+    tip4: Field::String,
     photo: Field::Carrierwave,
     banner: Field::Carrierwave,
     goal: Field::String.with_options(searchable: false),
@@ -40,6 +44,10 @@ class ProjectDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
   id
   name
+  tip1
+  tip2
+  tip3
+  tip4
   photo
   banner
   goal
@@ -57,6 +65,10 @@ class ProjectDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
   name
+  tip1
+  tip2
+  tip3
+  tip4
   photo
   banner
   goal

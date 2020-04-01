@@ -31,7 +31,8 @@ class DonationsController < ApplicationController
   # POST /donations.json
   def create
     @donation = Donation.new(donation_params)
-
+    @donation.user = current_user
+    @donation.project = @project
     respond_to do |format|
       if @donation.save
         format.html { redirect_to donation_checkout_path(@donation), notice: 'Donation was successfully created.' }
