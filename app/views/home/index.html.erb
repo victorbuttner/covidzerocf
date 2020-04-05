@@ -1,20 +1,28 @@
-<div class="container-flruid">
-    <section class="home pt-5">
-        </br></br></br>
-        <h2 class="text-center">COMO FAZER UMA DOAÇÃO?</h2></br>
-        <h4 class="text-center mt-3"> ENTENDA COMO VOCÊ PODE AJUDAR O MOVIMENTO</br> COVIDZERO​</h4></br></br></br></br>
-        <h1 class="text-center mt-5"><%=icon('fas', 'angle-double-down', class: 'strong')%></h3>
-    </section>
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="home pt-5">
+                </br></br></br>
+                <h2 class="text-center">COMO FAZER UMA DOAÇÃO?</h2></br>
+                <h4 class="text-center mt-3"> ENTENDA COMO VOCÊ PODE AJUDAR O MOVIMENTO</br> COVIDZERO​</h4></br></br></br></br>
+                <h1 class="text-center mt-5"><%=icon('fas', 'angle-double-down', class: 'strong')%></h3>
+            </section>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
     <div class="container">
         <div class="row mt-5 mx-auto justify-content-center">
-            <h2 class="text-center mb-5 projects-caption p-3">PROJETOS EM</br> CAPTAÇÃO</h2>
+            <div class="row">
+                <h2 class="text-center mb-5 projects-caption p-3">PROJETOS EM</br> CAPTAÇÃO</h2>
+            </div>
+            
             <div class="card-group">
                 <% if @projects.any? %>
                     <% @projects.each_with_index do |project,index|  %>
-                        <div class="col-4 card-group mx-auto">                
+                        <div class="col-6 card-group mx-auto">                
                             <div class="card " onclick="window.location='<%= project_path(project) %>'">
                                 <span class="m-3">
-                                    <img src="<%= project.photo.url %>" class="card-img-top img-fluid" alt="logo">
+                                    <img src="<%= project.photo.url %>" class="card-img-top img-fluid" style="max-height: 250px;" alt="logo">
                                 </span>
                                 
                                 <div class="card-body"   >
@@ -25,27 +33,31 @@
                                     </div>                                
                                     <div class="row mb-3">
                                         <div class="col">
-                                            <p class="card-text text-justify "><%= truncate  project.about , length: 60%> </p>
+                                            <p class="card-text text-justify "><%= truncate  project.about , length: 70%> </p>
                                         </div>
                                     </div>
+                                    <p><strong>Captação</strong></p>
                                     <div class="progress">
                                         <div class="progress-bar" role="progressbar" style="width: <%=project.donation_percentage%>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><%=project.donation_percentage%>%</div>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <dl class="cc-inlineStats">
+                                            <div class="cc-inlineStats__group">
+                                                <dd class="cc-inlineStats__value"><%= number_to_currency(project.goal)%></dd>
+                                                <dt class="cc-inlineStats__label text-red-pacto">Meta</dt>
+                                              </div>
+                                            <div class="cc-inlineStats__group">
+                                              <dd class="cc-inlineStats__value"><%= number_to_currency(project.donation_total)%></dd>
+                                              <dt class="cc-inlineStats__label text-red-pacto">Arrecadado</dt>
+                                            </div>
+                                            <div class="cc-inlineStats__group">
+                                              <dd class="cc-inlineStats__value"><%= number_to_currency(project.quota_value)%> </dd>
+                                              <dt class="cc-inlineStats__label text-red-pacto">Doação mínima</dt>
+                                            </div>
+                                        </dl>
+                       
                                     </div>        
-                                    <dl class="cc-inlineStats">
-                                        <div class="cc-inlineStats__group">
-                                            <dd class="cc-inlineStats__value"><%= number_to_currency(project.goal)%></dd>
-                                            <dt class="cc-inlineStats__label text-red-pacto">Meta</dt>
-                                          </div>
-                                        <div class="cc-inlineStats__group">
-                                          <dd class="cc-inlineStats__value"><%= number_to_currency(project.donation_total)%></dd>
-                                          <dt class="cc-inlineStats__label text-red-pacto">Arrecadado</dt>
-                                        </div>
-                                        <div class="cc-inlineStats__group">
-                                          <dd class="cc-inlineStats__value"><%= number_to_currency(project.quota_value)%> </dd>
-                                          <dt class="cc-inlineStats__label text-red-pacto">Doação mínima</dt>
-                                        </div>
-                                    </dl>
-                   
+         
                                 </div>
                             </div>
                         </div>
@@ -54,10 +66,11 @@
             </div>
         </div>
     </div>
+
     
     <section>
         <div class="row justify-content-center pt-5">
-            <div class="col-6 mx-auto text-covid">
+            <div class="col-8 mx-auto text-covid">
 
                 <h1 class="text-center pb-3">Entenda porque</br>nós existimos</h1>
                 <p class="text-covid">O CovidZero é um projeto OpenSource que nasceu com intuito de ajudar a sociedade frente aos acontecimentos do CoronaVirus (SARS-CoV-2).</p>
@@ -107,8 +120,5 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-        
+        </div>        
     </section>
-</div>
