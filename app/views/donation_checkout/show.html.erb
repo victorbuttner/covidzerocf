@@ -292,8 +292,11 @@ $( document ).ready(function() {
           text: 'Você fez sua doação com sucesso!',
           icon: 'success',
           timer: 5000,
-        })
-        document.location.href="/";     
+        }).then((result) => {
+          if (result.value) {
+            document.location.href="/";     
+          }
+        });
       },
       error: function( jqXhr, textStatus, errorThrown ){
         Swal.fire({
