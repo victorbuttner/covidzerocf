@@ -278,7 +278,14 @@ $( document ).ready(function() {
         }
       }      
     }
-    
+    Swal.fire({
+      title: 'Processando pagamento!',
+      html: 'Aguarde enquanto processamentos o pagamento <b></b> de sua doação.',
+      timerProgressBar: true,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+        }
+    });    
     $.ajax({
       url: '/donation_checkout',
       dataType: 'json',
