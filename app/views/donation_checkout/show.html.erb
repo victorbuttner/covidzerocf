@@ -279,10 +279,20 @@ $( document ).ready(function() {
       data: JSON.stringify( json_body ),
       processData: false,
       success: function( data, textStatus, jQxhr ){
+        Swal.fire(
+          'Parabés !',
+          'Você fez sua doação com sucesso!',
+          'success'
+        )
           console.log( JSON.stringify( data ) );
       },
       error: function( jqXhr, textStatus, errorThrown ){
-          console.log( errorThrown );
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Ocorreu um erro no processamento do pagamento!',
+          footer: 'Verifique os campos digitados e tente novamente'
+        })
       }
     });
 
