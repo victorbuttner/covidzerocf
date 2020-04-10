@@ -1,92 +1,297 @@
-<div class="row justify-content-center mt-5">
-    <div class="col-6">
-        <div class="card">
-            <div class="card-body">
-                <span class="m-3">
-                    <img src="<%= @project.photo.url %>" class="card-img-top img-fluid" alt="logo">
-                </span>
-                <h3 class="card-title text-center p-3"><%=@project.name%></h3>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><h4 class="text-center">Valor da doação <%= number_to_currency(@donation.value)%> </h4></li>
-                </ul>
-                <form class="needs-validation" novalidate="" _lpchecked="1">
-                  <h4 class="mb-3">Pagamento</h4>
-                  <div class="d-block my-3">
-                    <div class="custom-control custom-radio">
-                      <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
-                      <label class="custom-control-label" for="credit">Cartão de crédito</label>
-                    </div>
-                    <!-- <div class="custom-control custom-radio">
-                      <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                      <label class="custom-control-label" for="boleto">Boleto</label>
-                    </div> -->
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <label for="cc-name">Nome no cartão</label>
-                      <input type="text" class="form-control" id="cc-name" placeholder="" required="">
-                      <small class="text-muted">Nome conforme descrito no cartão</small>
-                      <div class="invalid-feedback">
-                        Nome no cartão é obrigatório
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <label for="cc-number">Número do cartão</label>
-                      <input type="text" class="form-control" id="cc-number" placeholder="" required="">
-                      <div class="invalid-feedback">
-                        Credit card number is required
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row justify-content-center">
-                    <div class="col-md-3 mb-3">
-                      <label for="cc-expiration">Expira em</label>
-                      <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
-                      <div class="invalid-feedback">
-                        Data de expiração é obrigatório
-                      </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                      <label for="cc-cvv">CVV</label>
-                      <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
-                      <div class="invalid-feedback">
-                        CVV obrigatório
-                      </div>
-                    </div>
-                  </div>
-                  <hr class="mb-4">
-                  <button class="btn btn-primary btn-lg btn-block" type="submit">Fazer pagamento</button>
-                </form>
-                </div>
-                     
-            </div>
-                
-        </div>
-       
+<style>
+  .bg-covid {
+    background-color: #343a40;
+    color: white;
+    border-radius: 10px;
+  }
+  label {
+    margin: 8px;
+  }
+  input {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  select {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+</style>
+
+<div class="row justify-content-center mt-3  ">
+
+  <div class="col-6 bg-covid">
+    <div class="row text-center mt-3">
+      <div class="col">
+        <span class="m-3">
+            <img src="<%= @project.photo.url %>" class="card-img-top img-fluid" alt="logo" style="height: 250px; width: auto;">
+        </span>
+        <h3 class="card-title text-center p-3"><%=@project.name%></h3>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item  bg-covid"><h4 class="text-center">Valor da doação <%= number_to_currency(@donation.value)%> </h4></li>
+        </ul>
+      </div>
     </div>
+    <div class="card  bg-covid">
+      <div class="card-body  bg-dark">
+        <form method="post" id="checkout" action="/donation_checkout">
+          <input type="hidden" value="<%=@donation.id%>" id="donation_id">
+          <input type="hidden" value="<%=@project.name%>" id="project_name">
+          <input type="hidden" value="<%=@donation.value%>" id="donation_value">
+
+          <div class="row">
+            <div class="col-sm-12">
+              <h4>Seus dados</h4>
+            </div>
+            <div class="col">
+              <label for="cpf">CPF</label>
+              <input type="text" id="cpf" class="form-control" required>
+            </div>                      
+            <div class="col">
+              <label for="first_name">Primeiro nome</label>
+              <input type="text" id="first_name" class="form-control" required>
+            </div>
+            <div class="col">
+              <label for="surname">Sobrenome</label>
+              <input type="text" id="surname" class="form-control" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" class="form-control" required>
+            </div>
+            <div class="col">
+              <label for="birthdate">Data de Nascimento</label>
+              <input type="date" id="birthdate" class="form-control" required placeholder="Data de Aníversário">
+            </div>
+            <div class="col">
+              <label for="phone">Telefone</label>
+              <input type="text" id="phone" class="form-control" required>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <label for="zipcode">CEP</label>
+              <input type="text" id="zipcode" class="form-control" required>
+            </div>
+            <div class="col-4">
+              <label for="address_street">Rua/Avenida</label>
+              <input type="text" id="address_street" class="form-control" disabled>
+            </div>   
+            <div class="col-2">
+              <label for="address_number">Número</label>
+              <input type="text" id="address_number" class="form-control" required>
+            </div>  
+            
+            <div class="col">
+              <label for="address_reference">Complemento</label>
+              <input type="text" id="address_reference" class="form-control" >
+            </div>      
+          </div>
+          <div class="row ">
+            <div class="col">
+              <label for="address_district">Bairro</label>
+              <input type="text" id="address_district" class="form-control" disabled>
+            </div>            
+            <div class="col-4">
+              <label for="address_city">Cidade</label>
+              <input type="text" id="address_city" class="form-control" disabled>
+            </div>
+            <div class="col">
+              <label for="address_state">Estado</label>
+              <select id="address_state" class="form-control" required>
+                <option value=99></option>
+                <option value="AC">AC</option>
+                <option value="AL">AL</option>
+                <option value="AP">AP</option>
+                <option value="AM">AM</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MT">MT</option>
+                <option value="MS">MS</option>
+                <option value="MG">MG</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PR">PR</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RS">RS</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="SC">SC</option>
+                <option value="SP">SP</option>
+                <option value="SE">SE</option>
+                <option value="TO">TO</option>
+              </select>
+            </div>
+          </div>
+          <hr>
+          <div class="row mt-3">
+            <div class="col-12">
+              <h4 class="mb-3">Pagamento</h4>
+            </div>
+            <div class="col">
+              <label for="cc-name">Nome no cartão</label>
+              <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+              <small class="text-muted">Nome conforme descrito no cartão</small>
+              <div class="invalid-feedback">
+                Nome no cartão é obrigatório
+              </div>
+            </div>
+            <div class="col">
+              <label for="cc-number">Número do cartão</label>
+              <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+              <div class="invalid-feedback">
+                Credit card number is required
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              <label for="cc-expiration-m">Mês de expiração</label>
+              <input type="number" class="form-control" id="cc-expiration-m" placeholder="" required="">
+              <div class="invalid-feedback">
+                Data de expiração é obrigatório
+              </div>
+            </div>
+            <div class="col-3">
+              <label for="cc-expiration-y">Ano de expiração</label>
+              <input type="number" class="form-control" id="cc-expiration-y" placeholder="" required="">
+              <div class="invalid-feedback">
+                Data de expiração é obrigatório
+              </div>
+            </div>
+            <div class="col-3">
+              <label for="cc-cvv">CVV</label>
+              <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+              <div class="invalid-feedback">
+                CVV obrigatório
+              </div>
+            </div>
+          </div>       
+            <button class="btn btn-success btn-block align-middle mt-3">Finalizar Doação</button>
+        </form>                  
+      </div>
+              
+    </div>       
+  </div>
+
 </div>
 <script>
-    Iugu.setAccountID("5140DBA6B580485B8A9EE29CB825B88F");
-    Iugu.setTestMode(true);
-    Iugu.setup();
-    jQuery(function($) {
-      $('#payment-form').submit(function(evt) {
-        var form = $(this);
-        var tokenResponseHandler = function(data) {
-            
-            if (data.errors) {
-                alert("Erro salvando cartão: " + JSON.stringify(data.errors));
-            } else {
-                $("#token").val( data.id );
-                form.get(0).submit();
+$( document ).ready(function() {
+  //input masks
+  $("#phone").inputmask({"mask": "(99) 9999-9999"});
+  $("#cpf").inputmask({"mask": "999.999.999-99"});
+  $("#zipcode").inputmask({"mask": "99999-999"});
+  $("#cc-number").inputmask({"mask": "9999 9999 9999 9999"});
+  $("#cc-expiration-y").inputmask({"mask": "9999"});
+  $("#cc-expiration-m").inputmask({"mask": "99"});
+  $("#cc-cvv").inputmask({"mask": "999"});  
+  //cep validation  
+  function limpa_formulário_cep() {
+      // Limpa valores do formulário de cep.
+      $("#address_street").val("");
+      $("#address_district").val("");
+      $("#address_city").val("");
+      $("#address_state").val("");
+  }   
+  $("#zipcode").blur(function () {
+    let cep = $(this).val().replace(/\D/g, '');
+    if (cep != "") {
+      let validacep = /^[0-9]{8}$/;
+      if(validacep.test(cep)) {
+        $('#address_street').val("...");
+        $('#address_district').val("...");
+        $('#address_city').val("...");
+        $('#address_state').val("...");
+        $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+          if (!("erro" in dados)) {
+            $('#address_street').val(dados.logradouro);
+            $('#address_district').val(dados.bairro);
+            $('#address_city').val(dados.localidade);
+            $('#address_state').val(dados.uf);
+          }
+          else {
+              limpa_formulário_cep();
+              alert("CEP não encontrado.");
+          }          
+        });      
+      }
+      else {
+        limpa_formulário_cep();
+        alert("Formato de CEP inválido.");
+      }
+    }
+    else{
+      limpa_formulário_cep();
+    }
+  })
+
+  $("#checkout").submit(function(e){
+    e.preventDefault();
+    let json_body = {
+      "donation": {
+        "id": $('#donation_id').val(),
+        "order": {
+          "description": $('#project_name').val(),
+          "amount": $('#donation_value').val(),
+          "payment": {
+            "card": {
+              "holder_name": $('#cc-name').val(),
+              "expiration_month": $('#cc-expiration-m').val(),
+              "expiration_year": $('#cc-expiration-y').val(),
+              "card_number": $('#cc-number').val().replace(/\D/g, ''),
+              "security_code": $('#cc-cvv').val() 
+            }	
+          },
+          "customer": {
+            "first_name": $('#first_name').val(),
+            "surname": $('#surname').val(),
+            "cpf": $('#cpf').val().replace(/\D/g, ''),
+            "birthdate": $('#birthdate').val(),
+            "email": $('#email').val(),
+            "phone": $('#phone').val(),
+            "address": {
+              "street": $('#address_street').val(),
+              "number": $('#address_number').val(),
+              "zipcode": $('#zipcode').val().replace(/\D/g, ''),
+              "district": $('#address_district').val(),
+              "city": $('#address_city').val(),
+              "state": $('#address_state').val(),
+              "country": "BRL"
             }
-            
-            // Seu código para continuar a submissão
-            // Ex: form.submit();
+          }
         }
-      
-        Iugu.createPaymentToken(this, tokenResponseHandler);
-        return false;
+      }      
+    }
+    
+    $.ajax({
+      url: '/donation_checkout',
+      dataType: 'json',
+      type: 'post',
+      contentType: 'application/json',
+      data: JSON.stringify( json_body ),
+      processData: false,
+      success: function( data, textStatus, jQxhr ){
+          console.log( JSON.stringify( data ) );
+      },
+      error: function( jqXhr, textStatus, errorThrown ){
+          console.log( errorThrown );
+      }
+    });
+
+
   });
-});
+
+  
+})
+  
+
+  
 </script>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_03_121157) do
+ActiveRecord::Schema.define(version: 2020_04_09_165956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 2020_04_03_121157) do
     t.string "user_name"
     t.date "birthdate"
     t.string "phone"
+    t.string "first_name"
+    t.string "surname"
+    t.string "address_street"
+    t.integer "address_number"
+    t.string "address_zipcode"
+    t.string "address_reference"
+    t.string "address_district"
+    t.string "address_city"
+    t.string "address_state"
+    t.string "address_country"
     t.index ["project_id"], name: "index_donations_on_project_id"
   end
 
