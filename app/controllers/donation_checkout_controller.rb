@@ -28,6 +28,9 @@ class DonationCheckoutController < ApplicationController
     end
 
     @donation = Donation.find(donation_params[:id])
+    @donation.update(donation_params[:order][:customer].except(:address))
+    address_info = donation_params[:order][:customer][:address]
+    @donation.update(address_street: address_info[:street],address_number: address_info[:number], address_zipcode: address_info[:zipcode], address_reference: address_info[:reference], address_district: address_info[:district] , address_city: address_info[:city], address_state: address_info[:state], address_country: 'BRL'  )
   end
 
 end

@@ -155,14 +155,14 @@
           <div class="row">
             <div class="col-3">
               <label for="cc-expiration-m">Mês de expiração</label>
-              <input type="number" class="form-control" id="cc-expiration-m" placeholder="" required="">
+              <input type="text" class="form-control" id="cc-expiration-m" placeholder="" required="">
               <div class="invalid-feedback">
                 Data de expiração é obrigatório
               </div>
             </div>
             <div class="col-3">
               <label for="cc-expiration-y">Ano de expiração</label>
-              <input type="number" class="form-control" id="cc-expiration-y" placeholder="" required="">
+              <input type="text" class="form-control" id="cc-expiration-y" placeholder="" required="">
               <div class="invalid-feedback">
                 Data de expiração é obrigatório
               </div>
@@ -219,13 +219,21 @@ $( document ).ready(function() {
           }
           else {
               limpa_formulário_cep();
-              alert("CEP não encontrado.");
+              Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'CEP não encontrado',
+              })
           }          
         });      
       }
       else {
         limpa_formulário_cep();
-        alert("Formato de CEP inválido.");
+        Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: 'Cep Inválido',
+        })
       }
     }
     else{
@@ -244,8 +252,8 @@ $( document ).ready(function() {
           "payment": {
             "card": {
               "holder_name": $('#cc-name').val(),
-              "expiration_month": $('#cc-expiration-m').val(),
-              "expiration_year": $('#cc-expiration-y').val(),
+              "expiration_month": parseInt($('#cc-expiration-m').val()),
+              "expiration_year":parseInt($('#cc-expiration-y').val()),
               "card_number": $('#cc-number').val().replace(/\D/g, ''),
               "security_code": $('#cc-cvv').val() 
             }	
@@ -279,12 +287,13 @@ $( document ).ready(function() {
       data: JSON.stringify( json_body ),
       processData: false,
       success: function( data, textStatus, jQxhr ){
-        Swal.fire(
-          'Parabés !',
-          'Você fez sua doação com sucesso!',
-          'success'
-        )
-          console.log( JSON.stringify( data ) );
+        Swal.fire({
+          title:'Parabéns!',
+          text: 'Você fez sua doação com sucesso!',
+          icon: 'success',
+          timer: 5000,
+        })
+        document.location.href="/";     
       },
       error: function( jqXhr, textStatus, errorThrown ){
         Swal.fire({
