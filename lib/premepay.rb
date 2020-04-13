@@ -111,7 +111,7 @@ module Premepay
         validates :surname, presence: true, length: {maximum: 45}
         validates :cpf, format: {with: /\A\d{11}\z/}
         validates_date :birthdate
-        validates :email, format: {with: /\A\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}\z/}
+        validates :email, format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}\z/}
         validates :phone, format: {with: /\A(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})\z/}
         validate :validate_address
 
