@@ -5,10 +5,9 @@ Rails.application.routes.draw do
   post 'donation_checkout' , to: 'donation_checkout#create'
 
   namespace :admin do
-      resources :users
       resources :projects
 
-      root to: "users#index"
+      root to: "projects#index"
     end
   resources :projects do
     resources :donations

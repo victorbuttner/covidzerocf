@@ -8,23 +8,18 @@ class ProjectDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    donations: Field::HasMany,
     id: Field::Number,
     name: Field::String,
-    tip1: Field::String,
-    tip2: Field::String,
-    tip3: Field::String,
-    tip4: Field::String,
     photo: Field::Carrierwave,
-    banner: Field::Carrierwave,
     goal: Field::String.with_options(searchable: false),
-    quota_total: Field::Number,
     quota_value: Field::String.with_options(searchable: false),
     slug: Field::String,
-    active: Field::Boolean,
-    video_url: Field::String,
-    about: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    about: Field::String,
+    video_url: Field::String,
+    banner: Field::Carrierwave,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -33,51 +28,42 @@ class ProjectDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
+  donations
   id
   name
   photo
-  goal
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
+  donations
   id
   name
-  tip1
-  tip2
-  tip3
-  tip4
   photo
-  banner
   goal
-  quota_total
   quota_value
   slug
-  active
-  about
   created_at
   updated_at
+  about
+  video_url
+  banner
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
+  donations
   name
-  tip1
-  tip2
-  tip3
-  tip4
   photo
-  banner
   goal
-  quota_total
   quota_value
   slug
-  video_url
-  active
   about
+  video_url
+  banner
   ].freeze
 
   # COLLECTION_FILTERS
