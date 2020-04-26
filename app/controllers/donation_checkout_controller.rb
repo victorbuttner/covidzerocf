@@ -4,7 +4,7 @@ class DonationCheckoutController < ApplicationController
 
   def show
     @donation = Donation.find(params[:id])
-    @project = @donation.project
+    @project = @donation.project    
   end
 
   def create

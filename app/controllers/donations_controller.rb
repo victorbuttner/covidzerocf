@@ -1,6 +1,7 @@
 class DonationsController < ApplicationController
   before_action :set_donation, only: [:show, :edit, :update, :destroy]
   before_action :set_project
+  skip_before_action :verify_authenticity_token #temp
 
   # GET /donations
   # GET /donations.json
@@ -31,15 +32,11 @@ class DonationsController < ApplicationController
   def create
     @donation = Donation.new(donation_params)
     @donation.project = @project
-    respond_to do |format|
       if @donation.save
-        format.html { redirect_to donation_checkout_path(@donation), notice: 'Donation was successfully created.' }
-        format.json { render :show, status: :created, location: @donation }
+       render json: @donation, status: :created
       else
-        format.html { render :new }
-        format.json { render json: @donation.errors, status: :unprocessable_entity }
+        render json: @donation.errors, status: :unprocessable_entity
       end
-    end
   end
 
   # PATCH/PUT /donations/1
