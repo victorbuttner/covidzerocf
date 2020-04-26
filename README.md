@@ -1,6 +1,6 @@
 # O que é este projeto?
 
-Este App foi criado pela [Captable](https://www.captable.com.br) Startup referencia em crowdfunding de investimentos para Startups, com o com o intuito de captar doações para projetos vinculados ao [COVIDZERO](https://covidzero.com.br). 
+Este App com o com o intuito de captar doações para projetos vinculados ao [COVIDZERO](https://covidzero.com.br). 
 
 ## Stack utilizada 
  * Ruby 2.5.1
