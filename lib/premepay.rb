@@ -29,9 +29,10 @@ module Premepay
 
         def create!(token)
           return false if !valid?
-
           @customer.create!(token)
+          puts "customer created"
           @payment.card.create!(token: token, customer_id: @customer.id)
+          puts "payment created"
           response = self.class.post("/customers/#{@customer.id}/orders", { verify: false,
             body: OrderSerializer.new(self).to_json,
             headers: {
@@ -44,6 +45,7 @@ module Premepay
 
           if response.created?
             @id = response["id"]
+            puts "Order Response #{response}"
           else
             raise PremeIntegrationError.new("error occurred when saving order: #{response.to_s}")
           end
@@ -114,7 +116,7 @@ module Premepay
         validates :surname, presence: true, length: {maximum: 45}
         validates :cpf, format: {with: /\A\d{11}\z/}
         validates_date :birthdate
-        validates :email, format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}\z/}
+        #validates :email, format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}\z/}
         validates :phone, format: {with: /\A(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})\z/}
         validate :validate_address
 
@@ -140,7 +142,7 @@ module Premepay
 
         def create!(token)
           return false if !valid?
-
+          puts "user create!"
           if already_exists?(token)
             return;
           end
@@ -152,6 +154,7 @@ module Premepay
               "Authorization": "Bearer #{token}"
             }
           })
+          puts "user response customer #{CustomerSerializer.new(self).to_json} response #{response}"
           if response.created?
             @id = response["id"]
           else

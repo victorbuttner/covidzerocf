@@ -13,12 +13,14 @@ class DonationCheckoutController < ApplicationController
     payment: [card: [:holder_name, :expiration_month, :expiration_year, :card_number, :security_code]]])
     
     order = Order.new(donation_params[:order])
-
+    puts "Order #{order.to_json}"
     if order.valid?
       begin
         credential = Credential.new
         credential.authenticate!
+        puts "autenticado"
         order.create!(credential.token)
+        puts "order criada"
         address_info = donation_params[:order][:customer][:address]
         @donation = Donation.find(donation_params[:id])
         @donation.update(donation_params[:order][:customer].except(:address))
