@@ -3,7 +3,7 @@ module Premepay
 
     class OrderSerializer < ActiveModel::Serializer
       attributes :description, :amount, :payment
-      attribute :splits, if: 'is_production?'
+      attribute :splits
 
       def payment
           return PaymentSerializer.new(object.payment)

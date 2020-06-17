@@ -39,6 +39,9 @@ module Premepay
               "Authorization": "Bearer #{token}"
             }
           })
+          puts "Order Serializer #{OrderSerializer.new(self).to_json}"
+          puts "Order Response #{response}"
+
           if response.created?
             @id = response["id"]
           else
